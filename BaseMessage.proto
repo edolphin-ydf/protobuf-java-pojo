@@ -1,0 +1,67 @@
+package simpletour;
+
+option java_package = "com.simpletour.message";
+option java_outer_classname = "BaseMessageProtos";
+
+message LoginMessage {
+    required string servername = 1;
+    required int32 servertype = 2;
+    required int32 port = 3;
+    optional string host = 4;
+    optional int32 id = 5;
+}
+
+enum LoginResultEnum {
+    LoginResultSuccess = 0;
+    LoginResultFail = 1;
+}
+
+message LoginResult {
+    required LoginResultEnum result = 1;
+}
+
+message SuperServerLoginResult {
+    required LoginResultEnum result = 1;
+    optional string ip = 2;
+}
+
+message RequestServerIpInfo {
+}
+
+message ServerIpInfo {
+    required int32 id = 1;
+    required string name = 2;
+    required int32 type = 3;
+    required string host = 4;
+    required int32 port = 5;
+}
+
+message ReturnServerIpInfo {
+    required int32 id = 1;
+    repeated ServerIpInfo connect_to_me = 2;
+    repeated ServerIpInfo me_to_connect = 3;
+}
+
+message NotifyServerStartUp {
+    required int32 id = 1;
+}
+
+
+message AddOrder {
+    required string msg = 1;
+    required NotifyServerStartUp nssu = 2;
+}
+
+message RpcTestRequest {
+    required string requestMsg = 1;
+}
+
+message RpcTestResponse {
+    required string responseMsg = 1;
+}
+
+message BaseMessage {
+    required int32 cmd = 1;
+    required int32 param = 2;
+    optional int32 test = 3;
+}
